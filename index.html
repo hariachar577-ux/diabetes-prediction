@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlucoseWise | Diabetes Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Machine Learning Demo</p>
+        <h1>Diabetes prediction as a lightweight website.</h1>
+        <p class="hero-text">
+          Enter a few health indicators and this site will estimate diabetes risk using a logistic regression
+          model trained directly in the browser.
+        </p>
+        <div class="hero-badges">
+          <span>Browser-based ML</span>
+          <span>No install required</span>
+          <span>Educational use</span>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h2>Model snapshot</h2>
+        <div class="metric-grid">
+          <div>
+            <span class="metric-label">Algorithm</span>
+            <strong id="modelName">Training...</strong>
+          </div>
+          <div>
+            <span class="metric-label">Samples</span>
+            <strong id="sampleCount">-</strong>
+          </div>
+          <div>
+            <span class="metric-label">Features</span>
+            <strong id="featureCount">-</strong>
+          </div>
+          <div>
+            <span class="metric-label">Training accuracy</span>
+            <strong id="trainingAccuracy">-</strong>
+          </div>
+        </div>
+        <p class="mini-note">This is not a diagnosis and should not replace professional medical advice.</p>
+      </aside>
+    </header>
+
+    <main class="content-grid">
+      <section class="panel panel-form">
+        <div class="panel-head">
+          <p class="eyebrow">Prediction Form</p>
+          <h2>Check a patient profile</h2>
+        </div>
+        <form id="predictionForm" class="predict-form">
+          <label>
+            <span>Pregnancies</span>
+            <input type="number" id="pregnancies" min="0" max="20" step="1" value="2" required>
+          </label>
+          <label>
+            <span>Glucose (mg/dL)</span>
+            <input type="number" id="glucose" min="0" max="250" step="1" value="135" required>
+          </label>
+          <label>
+            <span>Blood Pressure (mm Hg)</span>
+            <input type="number" id="bloodPressure" min="0" max="140" step="1" value="72" required>
+          </label>
+          <label>
+            <span>Skin Thickness (mm)</span>
+            <input type="number" id="skinThickness" min="0" max="100" step="1" value="28" required>
+          </label>
+          <label>
+            <span>Insulin (mu U/ml)</span>
+            <input type="number" id="insulin" min="0" max="900" step="1" value="120" required>
+          </label>
+          <label>
+            <span>BMI</span>
+            <input type="number" id="bmi" min="0" max="70" step="0.1" value="31.5" required>
+          </label>
+          <label>
+            <span>Diabetes Pedigree Function</span>
+            <input type="number" id="dpf" min="0" max="3" step="0.001" value="0.472" required>
+          </label>
+          <label>
+            <span>Age</span>
+            <input type="number" id="age" min="1" max="120" step="1" value="41" required>
+          </label>
+          <button type="submit" class="primary-btn">Predict Risk</button>
+        </form>
+      </section>
+
+      <section class="panel panel-results">
+        <div class="panel-head">
+          <p class="eyebrow">Results</p>
+          <h2>Current assessment</h2>
+        </div>
+        <div class="result-card">
+          <p class="result-label">Predicted probability</p>
+          <h3 id="riskScore">--%</h3>
+          <p id="riskLevel" class="risk-pill neutral">Waiting for prediction</p>
+          <p id="resultSummary" class="result-summary">
+            Submit the form to see the predicted diabetes risk and the strongest contributing signals.
+          </p>
+        </div>
+        <div class="insight-list">
+          <div class="insight">
+            <span class="insight-title">Top positive drivers</span>
+            <p id="topDrivers">-</p>
+          </div>
+          <div class="insight">
+            <span class="insight-title">Top stabilizers</span>
+            <p id="topProtective">-</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel-about">
+        <div class="panel-head">
+          <p class="eyebrow">About The Model</p>
+          <h2>How it works</h2>
+        </div>
+        <div class="about-grid">
+          <article>
+            <h3>Inputs</h3>
+            <p>The model uses eight common health indicators often seen in diabetes screening datasets.</p>
+          </article>
+          <article>
+            <h3>Training</h3>
+            <p>A logistic regression model is trained in JavaScript with normalized features and gradient descent.</p>
+          </article>
+          <article>
+            <h3>Output</h3>
+            <p>The score is a probability estimate, grouped into low, moderate, or high risk bands for readability.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
